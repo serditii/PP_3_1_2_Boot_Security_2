@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<style type="text/css">
+    TABLE {
+        border: 0px double #000; /* Рамка вокруг таблицы */
+    }
+
+    TD, TH {
+        padding-left: 10px;
+        padding-right: 10px;
+        text-align: center;
+    }
+
+    H1 {
+        text-align: center;
+    }
+</style>
+<h1>Users</h1>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>LastName</th>
+        <th>Age</th>
+        <th>Email</th>
+        <th>Sity</th>
+        <th>Password</th>
+        <th>Roles</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <div th:each="user : ${users}">
+        <tr>
+            <td>
+                <a th:href="@{/users/{id}(id=${user.getId()})}"
+                   th:text="${user.username}">username</a>
+            </td>
+
+            <td>
+                <p th:text="${user.lastName}">lastName
+            </th>
+            </td>
+
+            <td>
+                <p th:text="${user.age}">age
+            </th>
+            </td>
+
+            <td>
+                <p th:text="${user.email}">email
+            </th>
+            </td>
+
+            <td>
+                <p th:text="${user.sity}">sity
+            </th>
+            </td>
+
+            <td>
+                <p th:text="${user.password}">password
+
+            </td>
+
+            <td>
+                <a th:each="role : ${user.roles}">
+                    <p th:text="${role.name}">name</a>
+
+
+            </td>
+
+            <td>
+                <form th:action="@{/users/{id}/edit(id=${user.getId()})}">
+                    <input type="submit" value="Edit"/>
+                </form>
+            </td>
+
+            <td>
+                <form th:method="delete" th:action="@{/users/{id}(id=${user.getId()})}">
+                    <input type="submit" value="Delete"/>
+                </form>
+            </td>
+        </tr>
+
+    </div>
+
+</table>
+<br>
+<hr>
+
+<form th:action="@{/users/new}">
+    <input type="submit" value="Create new user"/>
+</form>
+
+<form th:action="@{/logout}">
+    <input type="submit" value="Logout"/>
+</form>
+
+</tbody>
+</html>

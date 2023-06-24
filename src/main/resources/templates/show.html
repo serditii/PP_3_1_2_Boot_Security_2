@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/html">
 <head>
-    <title>Spring Security Example</title>
+    <meta charset="UTF-8">
+    <title>Show</title>
+
     <style type="text/css">
         TABLE {
             border: 1px double #000;
@@ -28,7 +30,6 @@
     </style>
 </head>
 <body>
-<h1>User, welcome spring boot security page!</h1>
 <table>
     <tr>
         <th>Name</th>
@@ -49,6 +50,15 @@
         <th>Password</th>
         <td><p th:text="${user.getPassword()}">VALUE</p></td>
 </table>
+
+
+<form th:action="@{/users/{id}/edit(id=${user.getId()})}">
+    <input type="submit" value="Edit"/>
+</form>
+
+<form th:method="delete" th:action="@{/users/{id}(id=${user.getId()})}">
+    <input type="submit" value="Delete"/>
+</form>
 
 <form th:action="@{/logout}">
     <input type="submit" value="Logout"/>

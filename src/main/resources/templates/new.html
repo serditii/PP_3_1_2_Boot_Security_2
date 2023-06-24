@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>New user</title>
+</head>
+
+<form th:method="post" th:action="@{/users}" th:object="${user}">
+
+    <label for="username">Name</label>
+    <input id="username" th:field="*{username}" type="text"/>
+    <td th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></td>
+
+    <br>
+    <label for="lastname">Lastname</label>
+    <input type="text" th:field="*{lastName}" id="lastname"/>
+    <td th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">LastName Error</td>
+
+    <br>
+    <label for="age">Age</label>
+    <input type="text" th:field="*{age}" id="age"/>
+    <td th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age Error</td>
+
+    <br>
+    <label for="email">Email</label>
+    <input type="text" th:field="*{email}" id="email"/>
+    <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</td>
+
+    <br>
+    <label for="sity">Sity</label>
+    <input type="text" th:field="*{sity}" id="sity"/>
+    <td th:if="${#fields.hasErrors('sity')}" th:errors="*{sity}">Sity Error</td>
+
+    <br>
+    <label for="password">Password</label>
+    <input type="text" th:field="*{password}" id="password"/>
+    <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</td>
+
+    <br>
+    <input type="submit" value="Add User"/>
+</form>
+
+<form th:action="@{/logout}">
+    <input type="submit" value="Logout"/>
+</form>
+
+</html>
